@@ -29,12 +29,12 @@ namespace WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddApplicationLayer();
-            services.AddPersistenceInfrastructure(Configuration);
+            services.AddPersistenceInfrastructure(configuration: Configuration);
             services.AddControllers();
             services.AddApiVersioningExtension();
-            services.AddSwaggerGen(c =>
+            services.AddSwaggerGen(setupAction: c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi", Version = "v1" });
+                c.SwaggerDoc(name: "v1", info: new OpenApiInfo { Title = "WebApi", Version = "v1" });
             });
         }
 
@@ -45,14 +45,14 @@ namespace WebApi
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApi v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint(url: "/swagger/v1/swagger.json", name: "WebApi v1"));
             }
 
             app.UseRouting();
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
+            app.UseEndpoints(configure: endpoints =>
             {
                 endpoints.MapControllers();
             });

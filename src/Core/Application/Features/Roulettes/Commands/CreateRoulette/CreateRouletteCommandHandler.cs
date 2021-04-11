@@ -18,9 +18,9 @@ namespace Application.Features.Roulettes.Commands.CreateRoulette
 
         public async Task<Guid> Handle(CreateRouletteCommand request, CancellationToken cancellationToken)
         {
-            var roullete = new Roulette(Guid.NewGuid(), "new");
-            await rouletteRepository.AddOrUpdateAsync(roullete);
-            return roullete.Id;
+            var roullete = new Roulette(id: Guid.NewGuid(), status: "new");
+            var roulleteDb = await rouletteRepository.AddOrUpdateAsync(roulette: roullete);
+            return roulleteDb.Id;
         }
     }
 }

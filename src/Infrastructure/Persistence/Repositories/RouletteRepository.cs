@@ -35,15 +35,15 @@ namespace Persistence.Repositories
 
         public async Task<Roulette> AddOrUpdateAsync(Roulette roulette)
         {
-            var created = await database.StringSetAsync(roulette.Id.ToString(), JsonSerializer.Serialize(roulette));
+            var created = await database.StringSetAsync(key: roulette.Id.ToString(), value: JsonSerializer.Serialize(value: roulette, options: new JsonSerializerOptions() { IgnoreNullValues = true }));
             if (!created)
             {
-                logger.LogInformation("Problem occur persisting the item.");
+                logger.LogInformation(message: "Problem occur persisting the item.");
                 return null;
             }
-            logger.LogInformation("Roulette persisted successfully.");
+            logger.LogInformation(message: "Roulette persisted successfully.");
 
-            return await GetByIdAsync(roulette.Id);
+            return await GetByIdAsync(rouletteId: roulette.Id);
         }
     }
 }
