@@ -9,5 +9,13 @@ namespace Domain.Entities
         public string Status { get; set; }
         public List<Bet> Bets { get; set; }
         public int WinnerNumber { get; set; }
+        public Roulette()
+        {
+        }
+        public Roulette(Guid id, string status)
+        {
+            Id = id;
+            Status = status;
+        }
     }
 }
