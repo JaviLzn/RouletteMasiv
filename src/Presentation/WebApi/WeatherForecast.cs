@@ -1,6 +1,6 @@
 using System;
 
-namespace Roulette.WebApi
+namespace WebApi
 {
     public class WeatherForecast
     {
