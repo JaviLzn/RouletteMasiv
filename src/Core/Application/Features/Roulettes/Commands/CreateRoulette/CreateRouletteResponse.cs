@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Application.Features.Roulettes.Commands.CreateRoulette
+﻿namespace Application.Features.Roulettes.Commands.CreateRoulette
 {
     public class CreateRouletteResponse
     {
