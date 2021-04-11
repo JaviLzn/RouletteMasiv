@@ -3,6 +3,8 @@ using Microsoft.Extensions.Options;
 using Domain.Settings;
 using StackExchange.Redis;
 using Microsoft.Extensions.Configuration;
+using Persistence.Repositories;
+using Application.Interfaces;
 
 namespace Persistence
 {
@@ -19,6 +21,7 @@ namespace Persistence
 
                 return ConnectionMultiplexer.Connect(configuration);
             });
+            services.AddTransient<IRouletteRepository, RouletteRepository>();
         }
     }
 }
