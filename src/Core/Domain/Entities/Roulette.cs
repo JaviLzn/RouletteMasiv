@@ -16,6 +16,7 @@ namespace Domain.Entities
         {
             Id = id;
             Status = status;
+            WinnerNumber = -1;
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Roulettes.Commands.CreateRoulette
 {
-    public class CreateRouletteCommandHandler : IRequestHandler<CreateRouletteCommand, Guid>
+    public class CreateRouletteCommandHandler : IRequestHandler<CreateRouletteCommand, CreateRouletteResponse>
     {
         private readonly IRouletteRepository rouletteRepository;
 
@@ -16,11 +16,11 @@ namespace Application.Features.Roulettes.Commands.CreateRoulette
             this.rouletteRepository = rouletteRepository;
         }
 
-        public async Task<Guid> Handle(CreateRouletteCommand request, CancellationToken cancellationToken)
+        public async Task<CreateRouletteResponse> Handle(CreateRouletteCommand request, CancellationToken cancellationToken)
         {
             var roullete = new Roulette(id: Guid.NewGuid(), status: "new");
             var roulleteDb = await rouletteRepository.AddOrUpdateAsync(roulette: roullete);
-            return roulleteDb.Id;
+            return new CreateRouletteResponse(roulleteDb.Id.ToString());
         }
     }
 }
