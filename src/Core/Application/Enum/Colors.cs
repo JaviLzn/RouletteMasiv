@@ -1,4 +1,4 @@
-﻿namespace Roulette.Application.Enum
+﻿namespace Application.Enum
 {
     public enum Colors
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Roulette.Domain.Entities
+namespace Domain.Entities
 {
     public class Bet
     {

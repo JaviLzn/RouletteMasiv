@@ -1,4 +1,4 @@
-﻿namespace Roulette.Domain.Settings
+﻿namespace Domain.Settings
 {
     public class ConnectionSettings
     {

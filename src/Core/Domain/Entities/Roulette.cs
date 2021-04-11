@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Roulette.Domain.Entities
+namespace Domain.Entities
 {
     public class Roulette
     {
