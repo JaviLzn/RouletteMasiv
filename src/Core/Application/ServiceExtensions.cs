@@ -8,7 +8,7 @@ namespace Application
     {
         public static void AddApplicationLayer(this IServiceCollection services)
         {
-            services.AddMediatR(Assembly.GetExecutingAssembly());
+            services.AddMediatR(assemblies: Assembly.GetExecutingAssembly());
         }
     }
 }
