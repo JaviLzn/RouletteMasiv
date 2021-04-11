@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Roulette.WebApi.Controllers
+namespace WebApi.Controllers
 {
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]

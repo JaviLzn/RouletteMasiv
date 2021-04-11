@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
-namespace Roulette.Application
+namespace Application
 {
     public static class ServiceExtensions
     {

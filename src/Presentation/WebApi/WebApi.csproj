@@ -9,8 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\Roulette.Application\Roulette.Application.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\Roulette.Persistence\Roulette.Persistence.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Persistence\Persistence.csproj" />
   </ItemGroup>
 
 </Project>
