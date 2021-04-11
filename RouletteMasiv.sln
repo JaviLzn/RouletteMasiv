@@ -11,9 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Roulette.WebApi", "src\Pres
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{0F0CCED1-7880-4510-BD23-D5D844A1858A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roulette.Application", "src\Core\Roulette.Application\Roulette.Application.csproj", "{4A6948E8-4CB3-44D0-A339-595D98808941}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Roulette.Application", "src\Core\Roulette.Application\Roulette.Application.csproj", "{4A6948E8-4CB3-44D0-A339-595D98808941}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roulette.Domain", "src\Core\Roulette.Domain\Roulette.Domain.csproj", "{E0DEC0A1-6D6D-4E16-A8E6-6598061CEF06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Roulette.Domain", "src\Core\Roulette.Domain\Roulette.Domain.csproj", "{E0DEC0A1-6D6D-4E16-A8E6-6598061CEF06}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{F2A2EDAC-F148-438B-8724-E1B5E4AC985F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roulette.Persistence", "src\Infrastructure\Roulette.Persistence\Roulette.Persistence.csproj", "{5C2B0DDC-EFD7-4388-AE88-F2A08A7A5990}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,10 @@ Global
 		{E0DEC0A1-6D6D-4E16-A8E6-6598061CEF06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0DEC0A1-6D6D-4E16-A8E6-6598061CEF06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0DEC0A1-6D6D-4E16-A8E6-6598061CEF06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C2B0DDC-EFD7-4388-AE88-F2A08A7A5990}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C2B0DDC-EFD7-4388-AE88-F2A08A7A5990}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C2B0DDC-EFD7-4388-AE88-F2A08A7A5990}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C2B0DDC-EFD7-4388-AE88-F2A08A7A5990}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -43,6 +51,8 @@ Global
 		{0F0CCED1-7880-4510-BD23-D5D844A1858A} = {723544D9-D3E7-4C2C-AAB0-492F5C33A898}
 		{4A6948E8-4CB3-44D0-A339-595D98808941} = {0F0CCED1-7880-4510-BD23-D5D844A1858A}
 		{E0DEC0A1-6D6D-4E16-A8E6-6598061CEF06} = {0F0CCED1-7880-4510-BD23-D5D844A1858A}
+		{F2A2EDAC-F148-438B-8724-E1B5E4AC985F} = {723544D9-D3E7-4C2C-AAB0-492F5C33A898}
+		{5C2B0DDC-EFD7-4388-AE88-F2A08A7A5990} = {F2A2EDAC-F148-438B-8724-E1B5E4AC985F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E042D573-D1F4-4FF7-A9B5-5693E8178626}
