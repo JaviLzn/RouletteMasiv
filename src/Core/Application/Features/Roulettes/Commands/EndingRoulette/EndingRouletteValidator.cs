@@ -19,8 +19,8 @@ namespace Application.Features.Roulettes.Commands.EndingRoulette
         private void Rules()
         {
             RuleFor(expression: p => p.RouletteId).NotEmpty().WithMessage(errorMessage: "Roulette not specified");
-            RuleFor(expression: p => p.RouletteId).MustAsync(async (RouletteId, cancellationToken) => await ValidatorHelper.RouletteExistAsync(rouletteId: RouletteId, rouletteRepository: rouletteRepository)).WithMessage(errorMessage: "Roulette not found.");
-            RuleFor(expression: p => p.RouletteId).MustAsync(async (RouletteId, cancellationToken) => await ValidatorHelper.RouletteIsOpen(rouletteId: RouletteId, rouletteRepository: rouletteRepository)).WithMessage(errorMessage: "Roulette must to be open");
+            RuleFor(expression: p => p.RouletteId).MustAsync(predicate: async (RouletteId, cancellationToken) => await ValidatorHelper.RouletteExistAsync(rouletteId: RouletteId, rouletteRepository: rouletteRepository)).WithMessage(errorMessage: "Roulette not found.");
+            RuleFor(expression: p => p.RouletteId).MustAsync(predicate: async (RouletteId, cancellationToken) => await ValidatorHelper.RouletteIsOpen(rouletteId: RouletteId, rouletteRepository: rouletteRepository)).WithMessage(errorMessage: "Roulette must to be open");
         }
     }
 }

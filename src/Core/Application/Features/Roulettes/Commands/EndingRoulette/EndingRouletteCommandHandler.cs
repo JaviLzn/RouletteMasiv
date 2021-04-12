@@ -24,28 +24,28 @@ namespace Application.Features.Roulettes.Commands.EndingRoulette
             this.validators = validators;
             this.rouletteRepository = rouletteRepository;
             Random rnd = new Random();
-            winnerNumber = rnd.Next(37);
+            winnerNumber = rnd.Next(maxValue: 37);
         }
 
         public async Task<EndingRouletteResponse> Handle(EndingRouletteCommand request, CancellationToken cancellationToken)
         {
-            var context = new ValidationContext<EndingRouletteCommand>(request);
-            List<ValidationFailure> failures = validators.Select(x => x.Validate(context: context)).SelectMany(selector: x => x.Errors).Where(predicate: x => x != null).ToList();
+            var context = new ValidationContext<EndingRouletteCommand>(instanceToValidate: request);
+            List<ValidationFailure> failures = validators.Select(selector: x => x.Validate(context: context)).SelectMany(selector: x => x.Errors).Where(predicate: x => x != null).ToList();
             if (failures.Count > 0)
             {
-                return new EndingRouletteResponse() { OperationStatus = "Failed", ValidationFailures = failures.Select(x => x.ErrorMessage).ToList() };
+                return new EndingRouletteResponse() { OperationStatus = "Failed", ValidationFailures = failures.Select(selector: x => x.ErrorMessage).ToList() };
             }
-            Roulette roulette = await ProcessRoulette(request);
+            Roulette roulette = await ProcessRoulette(request: request);
             return new EndingRouletteResponse() { OperationStatus = "Successful", RouletteId = roulette.Id, Bets = roulette.Bets, RouletteCurrentStatus = roulette.Status, WinnerNumber = winnerNumber };
         }
 
         private async Task<Roulette> ProcessRoulette(EndingRouletteCommand request)
         {
-            Roulette roulette = await rouletteRepository.GetByIdAsync(request.RouletteId);
+            Roulette roulette = await rouletteRepository.GetByIdAsync(rouletteId: request.RouletteId);
             roulette.WinnerNumber = winnerNumber;
             roulette.Status = RouletteStatus.Closed.ToString();
-            roulette.Bets.ForEach(bet => SetEarnInBet(bet));
-            return await rouletteRepository.AddOrUpdateAsync(roulette);
+            roulette.Bets.ForEach(bet => SetEarnInBet(bet: bet));
+            return await rouletteRepository.AddOrUpdateAsync(roulette: roulette);
         }
 
         private void SetEarnInBet(Bet bet)
@@ -57,7 +57,7 @@ namespace Application.Features.Roulettes.Commands.EndingRoulette
             if (bet.Color != null)
             {
                 var colorWinner = winnerNumber % 2 == 0 ? RouletteColors.Red.ToString() : RouletteColors.Black.ToString();
-                bet.AmountEarned = bet.Color == colorWinner ? Math.Round(bet.Amount * 1.8m, 2) : 0;
+                bet.AmountEarned = bet.Color == colorWinner ? Math.Round(d: bet.Amount * 1.8m, decimals: 2) : 0;
             }
         }
     }

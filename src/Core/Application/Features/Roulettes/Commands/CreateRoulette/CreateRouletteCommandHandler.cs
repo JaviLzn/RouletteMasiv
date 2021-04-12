@@ -22,7 +22,7 @@ namespace Application.Features.Roulettes.Commands.CreateRoulette
             var roullete = new Roulette(status: RouletteStatus.New.ToString());
             var roulleteDb = await rouletteRepository.AddOrUpdateAsync(roulette: roullete);
 
-            return new CreateRouletteResponse(roulleteDb.Id.ToString());
+            return new CreateRouletteResponse(rouletteId: roulleteDb.Id);
         }
     }
 }

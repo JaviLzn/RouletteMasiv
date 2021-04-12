@@ -9,7 +9,7 @@ namespace WebApi.Extensions
         {
             services.AddApiVersioning(setupAction: config =>
             {
-                config.DefaultApiVersion = new ApiVersion(1, 0);
+                config.DefaultApiVersion = new ApiVersion(majorVersion: 1, minorVersion: 0);
                 config.AssumeDefaultVersionWhenUnspecified = true;
                 config.ReportApiVersions = true;
             });

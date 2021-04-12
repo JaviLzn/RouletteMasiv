@@ -25,16 +25,16 @@ namespace Application.Features.Roulettes.Commands.OpeningRoulette
             }
             if (roulette.Status == RouletteStatus.Open.ToString())
             {
-                return new OpeningRouletteResponse() { RouletteId = roulette.Id.ToString(), RouletteCurrentStatus = roulette.Status, OperationStatus = "Roulette is now open" };
+                return new OpeningRouletteResponse() { RouletteId = roulette.Id, RouletteCurrentStatus = roulette.Status, OperationStatus = "Roulette is now open" };
             }
             if (roulette.Status == RouletteStatus.Closed.ToString())
             {
-                return new OpeningRouletteResponse() { RouletteId = roulette.Id.ToString(), RouletteCurrentStatus = roulette.Status, OperationStatus = "Denied. The roulette is already closed." };
+                return new OpeningRouletteResponse() { RouletteId = roulette.Id, RouletteCurrentStatus = roulette.Status, OperationStatus = "Denied. The roulette is already closed." };
             }
             roulette.Status = RouletteStatus.Open.ToString();
             var rouletteDb = await rouletteRepository.AddOrUpdateAsync(roulette: roulette);
 
-            return new OpeningRouletteResponse() { RouletteId = rouletteDb.Id.ToString(), RouletteCurrentStatus = rouletteDb.Status, OperationStatus = "Successful" };
+            return new OpeningRouletteResponse() { RouletteId = rouletteDb.Id, RouletteCurrentStatus = rouletteDb.Status, OperationStatus = "Successful" };
         }
     }
 }
