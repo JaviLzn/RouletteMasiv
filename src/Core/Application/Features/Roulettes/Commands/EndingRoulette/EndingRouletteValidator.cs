@@ -1,9 +1,6 @@
 ﻿using Application.Helpers;
 using Application.Interfaces;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Application.Features.Roulettes.Commands.EndingRoulette
 {

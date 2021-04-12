@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+    webapi:
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+            - ConnectionString=redisdata
+        ports:
+            - '80'
+
+    redisdata:
+        ports:
+            - '6379:6379'
+        volumes:
+            - redisdata:/data
+
+volumes:
+    redisdata:
+        external: false
