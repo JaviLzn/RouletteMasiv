@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:
+    webapi:
+        image: ${DOCKER_REGISTRY-}webapi
+        build:
+            context: .
+            dockerfile: src/Presentation/WebApi/Dockerfile
+
+    redisdata:
+        image: redis:alpine
