@@ -31,8 +31,7 @@ namespace Application.Features.Roulettes.Commands.BetRoulette
             {
                 return new BetRouletteResponse() { BetStatus = "Failed", ValidationFailures = failures.Select(x => x.ErrorMessage).ToList() };
             }
-            Guid.TryParse(request.RouletteId, out Guid roulleteId);
-            var roulette = await rouletteRepository.GetByIdAsync(rouletteId: roulleteId);
+            var roulette = await rouletteRepository.GetByIdAsync(rouletteId: request.RouletteId);
             roulette.Bets.Add(new Bet() { Amount = request.Amount, Color = request.Color, Number = request.Number, UserId = request.UserId });
             await rouletteRepository.AddOrUpdateAsync(roulette);
 

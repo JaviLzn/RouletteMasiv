@@ -17,8 +17,8 @@ namespace Application.Features.Roulettes.Commands.BetRoulette
         private void Rules()
         {
             RuleFor(expression: p => p.RouletteId).NotEmpty().WithMessage(errorMessage: "Roulette not specified");
-            RuleFor(expression: p => p.RouletteId).MustAsync(async (RouletteId, cancellationToken) => await ValidationHelper.RouletteExistAsync(RouletteId: RouletteId, rouletteRepository: rouletteRepository)).WithMessage(errorMessage: "Roulette not found.");
-            RuleFor(expression: p => p.RouletteId).MustAsync(async (RouletteId, cancellationToken) => await ValidationHelper.RouletteIsOpen(RouletteId: RouletteId, rouletteRepository: rouletteRepository)).WithMessage(errorMessage: "Roulette must to be open");
+            RuleFor(expression: p => p.RouletteId).MustAsync(async (RouletteId, cancellationToken) => await ValidatorHelper.RouletteExistAsync(rouletteId: RouletteId, rouletteRepository: rouletteRepository)).WithMessage(errorMessage: "Roulette not found.");
+            RuleFor(expression: p => p.RouletteId).MustAsync(async (RouletteId, cancellationToken) => await ValidatorHelper.RouletteIsOpen(rouletteId: RouletteId, rouletteRepository: rouletteRepository)).WithMessage(errorMessage: "Roulette must to be open");
             RuleFor(expression: p => p.Color).Empty().When(p => p.Number != null).WithMessage(errorMessage: "Color should not be sent when it is sent Number.");
             RuleFor(expression: p => p.Color).IsEnumName(enumType: typeof(RouletteColors)).When(predicate: p => p.Color != null).WithMessage(errorMessage: "Color not valid");
             RuleFor(expression: p => p.Number).Empty().When(p => !string.IsNullOrEmpty(p.Color)).WithMessage(errorMessage: "Number should not be sent when it is sent Color."); ;

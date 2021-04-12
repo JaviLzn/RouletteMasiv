@@ -19,7 +19,7 @@ namespace Application.Features.Roulettes.Commands.CreateRoulette
 
         public async Task<CreateRouletteResponse> Handle(CreateRouletteCommand request, CancellationToken cancellationToken)
         {
-            var roullete = new Roulette(id: Guid.NewGuid(), status: RouletteStatus.New.ToString());
+            var roullete = new Roulette(status: RouletteStatus.New.ToString());
             var roulleteDb = await rouletteRepository.AddOrUpdateAsync(roulette: roullete);
 
             return new CreateRouletteResponse(roulleteDb.Id.ToString());

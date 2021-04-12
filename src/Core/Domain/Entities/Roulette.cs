@@ -5,16 +5,16 @@ namespace Domain.Entities
 {
     public class Roulette
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
         public string Status { get; set; }
         public List<Bet> Bets { get; set; }
         public int WinnerNumber { get; set; }
         public Roulette()
         {
         }
-        public Roulette(Guid id, string status)
+        public Roulette(string status)
         {
-            Id = id;
+            Id = Guid.NewGuid().ToString();
             Status = status;
             WinnerNumber = -1;
         }

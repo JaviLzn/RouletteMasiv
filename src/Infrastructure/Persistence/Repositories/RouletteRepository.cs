@@ -22,9 +22,9 @@ namespace Persistence.Repositories
             database = this.redis.GetDatabase();
         }
 
-        public async Task<Roulette> GetByIdAsync(Guid rouletteId)
+        public async Task<Roulette> GetByIdAsync(string rouletteId)
         {
-            var data = await database.StringGetAsync(rouletteId.ToString());
+            var data = await database.StringGetAsync(rouletteId);
             if (data.IsNullOrEmpty)
             {
                 return null;

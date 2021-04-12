@@ -18,8 +18,7 @@ namespace Application.Features.Roulettes.Commands.OpeningRoulette
 
         public async Task<OpeningRouletteResponse> Handle(OpeningRouletteCommand request, CancellationToken cancellationToken)
         {
-            Guid.TryParse(request.RouletteId, out Guid roulleteId);
-            var roulette = await rouletteRepository.GetByIdAsync(rouletteId: roulleteId);
+            var roulette = await rouletteRepository.GetByIdAsync(rouletteId: request.RouletteId);
             if (roulette == null)
             {
                 return new OpeningRouletteResponse() { OperationStatus = "Failed. Roulette not found." };
