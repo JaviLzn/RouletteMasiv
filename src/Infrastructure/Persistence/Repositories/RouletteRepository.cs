@@ -22,9 +22,9 @@ namespace Persistence.Repositories
             database = this.redis.GetDatabase();
         }
 
-        public async Task<Roulette> GetByIdAsync(Guid rouletteId)
+        public async Task<Roulette> GetByIdAsync(string rouletteId)
         {
-            var data = await database.StringGetAsync(rouletteId.ToString());
+            var data = await database.StringGetAsync(rouletteId);
             if (data.IsNullOrEmpty)
             {
                 return null;
@@ -35,7 +35,7 @@ namespace Persistence.Repositories
 
         public async Task<Roulette> AddOrUpdateAsync(Roulette roulette)
         {
-            var created = await database.StringSetAsync(key: roulette.Id.ToString(), value: JsonSerializer.Serialize(value: roulette, options: new JsonSerializerOptions() { IgnoreNullValues = true }));
+            var created = await database.StringSetAsync(key: roulette.Id, value: JsonSerializer.Serialize(value: roulette, options: new JsonSerializerOptions() { IgnoreNullValues = true }));
             if (!created)
             {
                 logger.LogInformation(message: "Problem occur persisting the item.");

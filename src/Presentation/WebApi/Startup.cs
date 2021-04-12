@@ -30,7 +30,8 @@ namespace WebApi
         {
             services.AddApplicationLayer();
             services.AddPersistenceInfrastructure(configuration: Configuration);
-            services.AddControllers();
+            services.AddControllers()
+                    .AddJsonOptions(jsonOptions => jsonOptions.JsonSerializerOptions.IgnoreNullValues = true);
             services.AddApiVersioningExtension();
             services.AddSwaggerGen(setupAction: c =>
             {

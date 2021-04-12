@@ -7,7 +7,7 @@ namespace Application.Interfaces
 {
     public interface IRouletteRepository
     {
-        Task<Roulette> GetByIdAsync(Guid rouletteId);
+        Task<Roulette> GetByIdAsync(string rouletteId);
         Task<Roulette> AddOrUpdateAsync(Roulette roulette);
     }
 }

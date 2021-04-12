@@ -25,16 +25,19 @@ namespace Application.Features.Roulettes.Commands.BetRoulette
 
         public async Task<BetRouletteResponse> Handle(BetRouletteCommand request, CancellationToken cancellationToken)
         {
-            var context = new ValidationContext<BetRouletteCommand>(request);
-            List<ValidationFailure> failures = validators.Select(x => x.Validate(context)).SelectMany(x => x.Errors).Where(x => x != null).ToList();
+            var context = new ValidationContext<BetRouletteCommand>(instanceToValidate: request);
+            List<ValidationFailure> failures = validators.Select(selector: x => x.Validate(context: context)).SelectMany(selector: x => x.Errors).Where(predicate: x => x != null).ToList();
             if (failures.Count > 0)
             {
                 return new BetRouletteResponse() { BetStatus = "Failed", ValidationFailures = failures.Select(x => x.ErrorMessage).ToList() };
             }
-            Guid.TryParse(request.RouletteId, out Guid roulleteId);
-            var roulette = await rouletteRepository.GetByIdAsync(rouletteId: roulleteId);
-            roulette.Bets.Add(new Bet() { Amount = request.Amount, Color = request.Color, Number = request.Number, UserId = request.UserId });
-            await rouletteRepository.AddOrUpdateAsync(roulette);
+            var roulette = await rouletteRepository.GetByIdAsync(rouletteId: request.RouletteId);
+            if (roulette.Bets == null)
+            {
+                roulette.Bets = new List<Bet>();
+            }
+            roulette.Bets.Add(item: new Bet() { Amount = request.Amount, Color = request.Color, Number = request.Number, UserId = request.UserId });
+            await rouletteRepository.AddOrUpdateAsync(roulette: roulette);
 
             return new BetRouletteResponse() { BetStatus = "Successful" };
         }
