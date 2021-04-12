@@ -18,7 +18,7 @@ namespace Application.Features.Roulettes.Commands.OpeningRoulette
 
         public async Task<OpeningRouletteResponse> Handle(OpeningRouletteCommand request, CancellationToken cancellationToken)
         {
-            Guid.TryParse(request.Id, out Guid roulleteId);
+            Guid.TryParse(request.RouletteId, out Guid roulleteId);
             var roulette = await rouletteRepository.GetByIdAsync(rouletteId: roulleteId);
             if (roulette == null)
             {
