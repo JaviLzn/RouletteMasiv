@@ -3,11 +3,7 @@ using Application.Features.Roulettes.Commands.CreateRoulette;
 using Application.Features.Roulettes.Commands.EndingRoulette;
 using Application.Features.Roulettes.Commands.OpeningRoulette;
 using Application.Features.Roulettes.Queries.GetAllRoulettes;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -54,7 +50,7 @@ namespace WebApi.Controllers.v1
         [HttpGet]
         public async Task<IActionResult> GetAllAsync()
         {
-            return Ok(await Mediator.Send(new GetAllRoulettesQuery() {}));
+            return Ok(await Mediator.Send(new GetAllRoulettesQuery() { }));
         }
     }
 }

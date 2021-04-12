@@ -1,10 +1,10 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
+﻿using Application.Interfaces;
 using Domain.Settings;
-using StackExchange.Redis;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Persistence.Repositories;
-using Application.Interfaces;
+using StackExchange.Redis;
 
 namespace Persistence
 {
