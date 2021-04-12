@@ -1,6 +1,6 @@
 ﻿namespace Application.Enum
 {
-    public enum Colors
+    public enum RouletteColors
     {
         Red,
         Black
