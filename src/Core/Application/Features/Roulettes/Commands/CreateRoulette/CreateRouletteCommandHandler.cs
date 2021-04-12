@@ -1,4 +1,5 @@
-﻿using Application.Interfaces;
+﻿using Application.Enum;
+using Application.Interfaces;
 using Domain.Entities;
 using MediatR;
 using System;
@@ -18,9 +19,10 @@ namespace Application.Features.Roulettes.Commands.CreateRoulette
 
         public async Task<CreateRouletteResponse> Handle(CreateRouletteCommand request, CancellationToken cancellationToken)
         {
-            var roullete = new Roulette(id: Guid.NewGuid(), status: "new");
+            var roullete = new Roulette(status: RouletteStatus.New.ToString());
             var roulleteDb = await rouletteRepository.AddOrUpdateAsync(roulette: roullete);
-            return new CreateRouletteResponse(roulleteDb.Id.ToString());
+
+            return new CreateRouletteResponse(rouletteId: roulleteDb.Id);
         }
     }
 }
