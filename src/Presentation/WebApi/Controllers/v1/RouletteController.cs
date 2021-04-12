@@ -1,4 +1,5 @@
-﻿using Application.Features.Roulettes.Commands.CreateRoulette;
+﻿using Application.Features.Roulettes.Commands.BetRoulette;
+using Application.Features.Roulettes.Commands.CreateRoulette;
 using Application.Features.Roulettes.Commands.OpeningRoulette;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,18 +17,27 @@ namespace WebApi.Controllers.v1
         [HttpPost]
         [ProducesResponseType(typeof(CreateRouletteResponse), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> Post()
+        public async Task<IActionResult> PostAsync()
         {
             return Ok(await Mediator.Send(new CreateRouletteCommand()));
         }
 
         [HttpPost]
-        [Route("{id}/opening")]
+        [Route("{id}/Opening")]
         [ProducesResponseType(typeof(OpeningRouletteResponse), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> PostOpening(string id)
+        public async Task<IActionResult> PostOpeningAsync(string id)
         {
-            return Ok(await Mediator.Send(new OpeningRouletteCommand() { Id = id }));
+            return Ok(await Mediator.Send(new OpeningRouletteCommand() { RouletteId = id }));
+        }
+
+        [HttpPost]
+        [Route("{id}/Bet")]
+        [ProducesResponseType(typeof(BetRouletteResponse), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> PostBetAsync(string id, [FromHeader(Name = "UserId")] string userId, BetRouletteRequest request)
+        {
+            return Ok(await Mediator.Send(new BetRouletteCommand() { RouletteId = id, UserId = userId, Amount = request.Amount, Color = request.Color, Number = request.Number}));
         }
     }
 }
