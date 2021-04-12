@@ -3,6 +3,8 @@ using Domain.Entities;
 using Microsoft.Extensions.Logging;
 using StackExchange.Redis;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -44,6 +46,30 @@ namespace Persistence.Repositories
             logger.LogInformation(message: "Roulette persisted successfully.");
 
             return await GetByIdAsync(rouletteId: roulette.Id);
+        }
+
+        public async Task<IReadOnlyList<Roulette>> GetAllAsync()
+        {
+            var server = GetServer();
+            var data = server.Keys().ToList();
+
+            var roulettes = new List<Roulette>();
+            foreach (var keyRoulette in data)
+            {
+                var roulette = await GetByIdAsync(rouletteId: keyRoulette);
+                if (roulette != null)
+                {
+                    roulettes.Add(roulette);
+                }
+            }
+
+            return roulettes;
+        }
+
+        private IServer GetServer()
+        {
+            var endpoint = redis.GetEndPoints();
+            return redis.GetServer(endpoint.First());
         }
     }
 }
